@@ -16,7 +16,7 @@ import GoalInput from "components/GoalInput";
 
 const App: React.FC = () => {
 	const [courseGoal, setCourseGoal] = useState<Goal[]>([]);
-	const [isModalVisible, setIsModalVisible] = useState(true);
+	const [isModalVisible, setIsModalVisible] = useState(false);
 
 	const toggleModal = () => {
 		setIsModalVisible(!isModalVisible);
@@ -32,6 +32,8 @@ const App: React.FC = () => {
 			...currentGoals,
 			{ id: Math.random().toString(), text: goalText },
 		]);
+
+		toggleModal();
 	};
 
 	const handleGoalDelete = (goalId: Goal["id"]) => {
@@ -44,7 +46,11 @@ const App: React.FC = () => {
 		<View style={styles.container}>
 			<StatusBar style="auto" />
 			<Button title="Add New Goal" color="#5e0acc" onPress={toggleModal} />
-			<GoalInput onAddGoal={handleAddGoal} visible={isModalVisible} />
+			<GoalInput
+				onAddGoal={handleAddGoal}
+				visible={isModalVisible}
+				onCancel={toggleModal}
+			/>
 			<View style={styles.goalsContainer}>
 				<FlatList
 					keyExtractor={goal => goal.id}

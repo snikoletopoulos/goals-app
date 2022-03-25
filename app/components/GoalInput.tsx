@@ -14,6 +14,7 @@ import { Goal } from "types/goal.type";
 type Props = {
 	onAddGoal: (goalText: Goal["text"]) => void;
 	visible: boolean;
+	onCancel: () => void;
 };
 
 const GoalInput: React.FC<Props> = props => {
@@ -38,7 +39,7 @@ const GoalInput: React.FC<Props> = props => {
 						<Button title="Add goal" onPress={handleAddGoal} />
 					</View>
 					<View style={styles.button}>
-						<Button title="Cancel" onPress={handleAddGoal} />
+						<Button title="Cancel" onPress={props.onCancel} />
 					</View>
 				</View>
 			</View>
