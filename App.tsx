@@ -44,8 +44,8 @@ const App: React.FC = () => {
 
 	return (
 		<View style={styles.container}>
-			<StatusBar style="auto" />
-			<Button title="Add New Goal" color="#5e0acc" onPress={toggleModal} />
+			<StatusBar style="light" />
+			<Button title="Add New Goal" color="#b180f0" onPress={toggleModal} />
 			<GoalInput
 				onAddGoal={handleAddGoal}
 				visible={isModalVisible}

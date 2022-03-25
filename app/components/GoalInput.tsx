@@ -42,10 +42,10 @@ const GoalInput: React.FC<Props> = props => {
 				/>
 				<View style={styles.buttonContainer}>
 					<View style={styles.button}>
-						<Button title="Add goal" onPress={handleAddGoal} />
+						<Button title="Cancel" onPress={props.onCancel} color="#f31282" />
 					</View>
 					<View style={styles.button}>
-						<Button title="Cancel" onPress={props.onCancel} />
+						<Button title="Add goal" onPress={handleAddGoal} color="#b180f0" />
 					</View>
 				</View>
 			</View>
@@ -68,10 +68,9 @@ const styles = StyleSheet.create<Styles>({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
-		marginBottom: 24,
 		padding: 16,
 		borderBottomWidth: 1,
-		borderBottomColor: "#ccc",
+		backgroundColor: "#311b6b",
 	},
 
 	image: {
@@ -82,9 +81,12 @@ const styles = StyleSheet.create<Styles>({
 
 	textInput: {
 		width: "100%",
-		borderColor: "#ccc",
+		borderColor: "#e4d0ff",
+		backgroundColor: "#e4d0ff",
+		color: "#120438",
+		borderRadius: 6,
 		borderWidth: 1,
-		padding: 8,
+		padding: 16,
 	},
 
 	buttonContainer: {
