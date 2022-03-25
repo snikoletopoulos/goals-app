@@ -17,6 +17,12 @@ const App: React.FC = () => {
 		]);
 	};
 
+	const handleGoalDelete = (goalId: Goal["id"]) => {
+		setCourseGoal(currentGoals =>
+			currentGoals.filter(goal => goal.id !== goalId)
+		);
+	};
+
 	return (
 		<View style={styles.container}>
 			<StatusBar style="auto" />
@@ -26,7 +32,9 @@ const App: React.FC = () => {
 					keyExtractor={goal => goal.id}
 					alwaysBounceVertical={false}
 					data={courseGoal}
-					renderItem={itemData => <GoalItem text={itemData.item.text} />}
+					renderItem={itemData => (
+						<GoalItem goal={itemData.item} onPress={handleGoalDelete} />
+					)}
 				/>
 			</View>
 		</View>

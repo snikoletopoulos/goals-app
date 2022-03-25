@@ -1,14 +1,26 @@
-import { StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	TextStyle,
+	View,
+	ViewStyle,
+	Pressable,
+} from "react-native";
+
+import { Goal } from "types/goal.type";
 
 type Props = {
-	text: string;
+	goal: Goal;
+	onPress: (goalId: Goal["id"]) => void;
 };
 
 const GoalItem: React.FC<Props> = props => {
 	return (
-		<View style={styles.goalItem}>
-			<Text style={styles.goalText}>{props.text}</Text>
-		</View>
+		<Pressable onPress={props.onPress.bind(null, props.goal.id)}>
+			<View style={styles.goalItem}>
+				<Text style={styles.goalText}>{props.goal.text}</Text>
+			</View>
+		</Pressable>
 	);
 };
 
