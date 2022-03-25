@@ -10,7 +10,7 @@ import {
 
 import { StatusBar } from "expo-status-bar";
 
-const App = () => {
+const App: React.FC = () => {
 	return (
 		<View style={styles.container}>
 			<StatusBar style="auto" />
