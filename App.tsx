@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, ViewStyle, View, FlatList } from "react-native";
+import { StyleSheet, ViewStyle, View, FlatList, Alert } from "react-native";
 
 import { Goal } from "app/types/goal.type";
 import { StatusBar } from "expo-status-bar";
@@ -11,6 +11,11 @@ const App: React.FC = () => {
 	const [courseGoal, setCourseGoal] = useState<Goal[]>([]);
 
 	const handleAddGoal = (goalText: Goal["text"]) => {
+		if (!goalText) {
+			Alert.alert("No empty goal allowed", "Please enter a goal");
+			return;
+		}
+
 		setCourseGoal(currentGoals => [
 			...currentGoals,
 			{ id: Math.random().toString(), text: goalText },
