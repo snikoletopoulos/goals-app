@@ -1,18 +1,18 @@
 import { useState } from "react";
 import {
 	StyleSheet,
-	Text,
 	TextStyle,
 	ViewStyle,
 	View,
 	Button,
 	TextInput,
-	ScrollView,
 	FlatList,
 } from "react-native";
 
 import { Goal } from "app/types/goal.type";
 import { StatusBar } from "expo-status-bar";
+
+import GoalItem from "components/GoalItem";
 
 const App: React.FC = () => {
 	const [text, setText] = useState("");
@@ -43,11 +43,7 @@ const App: React.FC = () => {
 					keyExtractor={goal => goal.id}
 					alwaysBounceVertical={false}
 					data={courseGoal}
-					renderItem={itemData => (
-						<View style={styles.goalItem}>
-							<Text style={styles.goalText}>{itemData.item.text}</Text>
-						</View>
-					)}
+					renderItem={itemData => <GoalItem text={itemData.item.text} />}
 				/>
 			</View>
 		</View>
@@ -61,8 +57,6 @@ interface Styles {
 	inputContainer: ViewStyle;
 	textInput: TextStyle;
 	goalsContainer: ViewStyle;
-	goalItem: ViewStyle;
-	goalText: TextStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -93,17 +87,5 @@ const styles = StyleSheet.create<Styles>({
 
 	goalsContainer: {
 		flex: 5,
-	},
-
-	goalItem: {
-		margin: 8,
-		padding: 8,
-		borderRadius: 6,
-
-		backgroundColor: "#5e0acc",
-	},
-
-	goalText: {
-		color: "white",
 	},
 });
