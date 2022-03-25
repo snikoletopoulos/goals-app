@@ -7,6 +7,8 @@ import {
 	View,
 	ViewStyle,
 	Modal,
+	Image,
+	ImageStyle,
 } from "react-native";
 
 import { Goal } from "types/goal.type";
@@ -28,6 +30,10 @@ const GoalInput: React.FC<Props> = props => {
 	return (
 		<Modal visible={props.visible} animationType="slide">
 			<View style={styles.inputContainer}>
+				<Image
+					source={require("assets/images/goal.png")}
+					style={styles.image}
+				/>
 				<TextInput
 					value={text}
 					onChangeText={setText}
@@ -51,6 +57,7 @@ export default GoalInput;
 
 interface Styles {
 	inputContainer: ViewStyle;
+	image: ImageStyle;
 	textInput: TextStyle;
 	buttonContainer: ViewStyle;
 	button: ViewStyle;
@@ -65,6 +72,12 @@ const styles = StyleSheet.create<Styles>({
 		padding: 16,
 		borderBottomWidth: 1,
 		borderBottomColor: "#ccc",
+	},
+
+	image: {
+		width: 100,
+		height: 100,
+		margin: 20,
 	},
 
 	textInput: {
