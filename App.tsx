@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { StyleSheet, ViewStyle, View, FlatList, Alert } from "react-native";
+import {
+	StyleSheet,
+	ViewStyle,
+	View,
+	FlatList,
+	Alert,
+	Button,
+} from "react-native";
 
 import { Goal } from "app/types/goal.type";
 import { StatusBar } from "expo-status-bar";
@@ -9,6 +16,11 @@ import GoalInput from "components/GoalInput";
 
 const App: React.FC = () => {
 	const [courseGoal, setCourseGoal] = useState<Goal[]>([]);
+	const [isModalVisible, setIsModalVisible] = useState(true);
+
+	const toggleModal = () => {
+		setIsModalVisible(!isModalVisible);
+	};
 
 	const handleAddGoal = (goalText: Goal["text"]) => {
 		if (!goalText) {
@@ -31,7 +43,8 @@ const App: React.FC = () => {
 	return (
 		<View style={styles.container}>
 			<StatusBar style="auto" />
-			<GoalInput onAddGoal={handleAddGoal} />
+			<Button title="Add New Goal" color="#5e0acc" onPress={toggleModal} />
+			<GoalInput onAddGoal={handleAddGoal} visible={isModalVisible} />
 			<View style={styles.goalsContainer}>
 				<FlatList
 					keyExtractor={goal => goal.id}

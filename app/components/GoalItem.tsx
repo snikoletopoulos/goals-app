@@ -16,11 +16,15 @@ type Props = {
 
 const GoalItem: React.FC<Props> = props => {
 	return (
-		<Pressable onPress={props.onPress.bind(null, props.goal.id)}>
-			<View style={styles.goalItem}>
+		<View style={styles.goalItem}>
+			<Pressable
+				android_ripple={{ color: "#210644" }}
+				style={({ pressed }) => pressed && styles.pressedItem}
+				onPress={props.onPress.bind(null, props.goal.id)}
+			>
 				<Text style={styles.goalText}>{props.goal.text}</Text>
-			</View>
-		</Pressable>
+			</Pressable>
+		</View>
 	);
 };
 
@@ -29,18 +33,23 @@ export default GoalItem;
 interface Styles {
 	goalItem: ViewStyle;
 	goalText: TextStyle;
+	pressedItem: ViewStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
 	goalItem: {
 		margin: 8,
-		padding: 8,
 		borderRadius: 6,
-
 		backgroundColor: "#5e0acc",
+		overflow: "hidden",
+	},
+
+	pressedItem: {
+		opacity: 0.5,
 	},
 
 	goalText: {
+		padding: 8,
 		color: "white",
 	},
 });
