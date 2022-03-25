@@ -1,1 +1,4 @@
-export type Goal = string;
+export type Goal = {
+  id: string;
+  text: string;
+};

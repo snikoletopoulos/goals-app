@@ -7,6 +7,8 @@ import {
 	View,
 	Button,
 	TextInput,
+	ScrollView,
+	FlatList,
 } from "react-native";
 
 import { Goal } from "app/types/goal.type";
@@ -17,7 +19,10 @@ const App: React.FC = () => {
 	const [courseGoal, setCourseGoal] = useState<Goal[]>([]);
 
 	const handleAddGoal = () => {
-		setCourseGoal(currentGoals => [...currentGoals, text]);
+		setCourseGoal(currentGoals => [
+			...currentGoals,
+			{ id: Math.random().toString(), text: text },
+		]);
 		setText("");
 	};
 
@@ -34,12 +39,16 @@ const App: React.FC = () => {
 				<Button title="Add goal" onPress={handleAddGoal} />
 			</View>
 			<View style={styles.goalsContainer}>
-				<Text>List of goals...</Text>
-				{courseGoal.map((goal, index) => (
-					<View key={index} style={styles.goalItem}>
-						<Text style={styles.goalText}>{goal}</Text>
-					</View>
-				))}
+				<FlatList
+					keyExtractor={goal => goal.id}
+					alwaysBounceVertical={false}
+					data={courseGoal}
+					renderItem={itemData => (
+						<View style={styles.goalItem}>
+							<Text style={styles.goalText}>{itemData.item.text}</Text>
+						</View>
+					)}
+				/>
 			</View>
 		</View>
 	);
