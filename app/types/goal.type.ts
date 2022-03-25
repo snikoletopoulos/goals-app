@@ -1,4 +1,4 @@
 export type Goal = {
-  id: string;
-  text: string;
+	id: string;
+	text: string;
 };

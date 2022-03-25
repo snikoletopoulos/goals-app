@@ -7,7 +7,7 @@
 			"components/*": ["app/components/*"],
 			"assets/*": ["app/assets/*"],
 			"screens/*": ["app/screens/*"],
-			"types/*": ["app/types/*"],
+			"types/*": ["app/types/*"]
 		}
 	},
 	"exclude": ["node_modules"]
