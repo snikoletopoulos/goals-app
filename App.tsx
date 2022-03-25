@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -8,18 +9,37 @@ import {
 	TextInput,
 } from "react-native";
 
+import { Goal } from "app/types/goal.type";
 import { StatusBar } from "expo-status-bar";
 
 const App: React.FC = () => {
+	const [text, setText] = useState("");
+	const [courseGoal, setCourseGoal] = useState<Goal[]>([]);
+
+	const handleAddGoal = () => {
+		setCourseGoal(currentGoals => [...currentGoals, text]);
+		setText("");
+	};
+
 	return (
 		<View style={styles.container}>
 			<StatusBar style="auto" />
 			<View style={styles.inputContainer}>
-				<TextInput style={styles.textInput} placeholder="Your course goal!" />
-				<Button title="Add goal" onPress={() => {}} />
+				<TextInput
+					value={text}
+					onChangeText={setText}
+					style={styles.textInput}
+					placeholder="Your course goal!"
+				/>
+				<Button title="Add goal" onPress={handleAddGoal} />
 			</View>
 			<View style={styles.goalsContainer}>
 				<Text>List of goals...</Text>
+				{courseGoal.map((goal, index) => (
+					<View key={index} style={styles.goalItem}>
+						<Text style={styles.goalText}>{goal}</Text>
+					</View>
+				))}
 			</View>
 		</View>
 	);
@@ -32,6 +52,8 @@ interface Styles {
 	inputContainer: ViewStyle;
 	textInput: TextStyle;
 	goalsContainer: ViewStyle;
+	goalItem: ViewStyle;
+	goalText: TextStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -62,5 +84,17 @@ const styles = StyleSheet.create<Styles>({
 
 	goalsContainer: {
 		flex: 5,
+	},
+
+	goalItem: {
+		margin: 8,
+		padding: 8,
+		borderRadius: 6,
+
+		backgroundColor: "#5e0acc",
+	},
+
+	goalText: {
+		color: "white",
 	},
 });
